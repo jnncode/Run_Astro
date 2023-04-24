@@ -2,14 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AstronautThirdPerson
+public class AstronautThirdPerson : MonoBehaviour
 {
-
-  public class AstronautThirdPerson : MonoBehaviour
-  {
     private const float Y_ANGLE_MIN = 0.0f;
     private const float Y_ANGLE_MAX = 50.0f;
-
     public Transform lookAt;
     public Transform camTransform;
     public float distance = 5.0f;
@@ -31,7 +27,7 @@ namespace AstronautThirdPerson
         currentY += Input.GetAxis("Mouse Y");
 
         currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
-        
+
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
         distance -= scroll * zoomSpeed;
@@ -45,5 +41,5 @@ namespace AstronautThirdPerson
         camTransform.position = lookAt.position + rotation * dir;
         camTransform.LookAt(lookAt.position);
     }
-  }
 }
+
