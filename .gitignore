@@ -75,3 +75,6 @@ crashlytics-build.properties
 *.dwlt
 *.unity
 *.settings
+*.ttf
+*.cginc
+*.tss
