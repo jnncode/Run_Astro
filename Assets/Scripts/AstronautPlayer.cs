@@ -6,12 +6,11 @@ public class AstronautPlayer : MonoBehaviour {
 	public Animator anim;
 	public CharacterController controller;
 	private IPlayerAction playerAction; 
-
+	public Vector3 position;
 	public float speed = 10.0f;
 	public float turnSpeed = 5.0f;
 	public Vector3 moveDirection = Vector3.zero;
 	public float gravity = 20.0f;
-
 	void Start () {
 		controller = GetComponent <CharacterController>();
 		anim = gameObject.GetComponentInChildren<Animator>();
@@ -19,7 +18,7 @@ public class AstronautPlayer : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.GetKey("w") || Input.GetKey("s"))
+		if (Input.GetKey("w"))
 		{
     		playerAction = new WalkAction();
 		}
@@ -38,6 +37,12 @@ public class AstronautPlayer : MonoBehaviour {
 		}
 		if (playerAction != null) {
 			playerAction.PerformAction(this);
+		}
+
+		if (Input.GetKeyDown(KeyCode.Alpha1)) {
+		    SpawnPowerUp(PowerUpType.Shrink);
+        } else if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            SpawnPowerUp(PowerUpType.Expand);
 		}
 
 		float turn = Input.GetAxis("Horizontal");
@@ -68,4 +73,12 @@ public class AstronautPlayer : MonoBehaviour {
             moveDirection.y = Mathf.Sqrt(2f * gravity * height);
         }
     }
+
+	public void SpawnPowerUp(PowerUpType type)
+	{
+		Vector3 position = transform.position + new Vector3(0, 1, 0);
+		IPowerUp powerUp = PowerUpFactory.CreatePowerUp(type);
+		powerUp.SetPosition(position);
+		powerUp.Activate(this);
+	}
 }
