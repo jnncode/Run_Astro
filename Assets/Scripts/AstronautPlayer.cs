@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 
 public class AstronautPlayer : MonoBehaviour {
-
 	public Animator anim;
 	public CharacterController controller;
 	private IPlayerAction playerAction; 
@@ -11,10 +10,12 @@ public class AstronautPlayer : MonoBehaviour {
 	public float turnSpeed = 5.0f;
 	public Vector3 moveDirection = Vector3.zero;
 	public float gravity = 20.0f;
+	private Color _defaultColor = Color.white;
 	void Start () {
 		controller = GetComponent <CharacterController>();
 		anim = gameObject.GetComponentInChildren<Animator>();
 		playerAction = new WalkAction(); // default movement strategy
+		GetComponent<SkinnedMeshRenderer>().material.color = _defaultColor; // default decorator color
 	}
 
 	void Update () {
@@ -43,6 +44,16 @@ public class AstronautPlayer : MonoBehaviour {
 		    SpawnPowerUp(PowerUpType.Shrink);
         } else if (Input.GetKeyDown(KeyCode.Alpha2)) {
             SpawnPowerUp(PowerUpType.Expand);
+		}
+
+		if (Input.GetKeyDown(KeyCode.R)) {
+			GameObject.FindWithTag("Player").gameObject.AddComponent<RedCharacterDecorator>().ChangeColor(Color.red);
+		}
+		if (Input.GetKeyDown(KeyCode.B)) {
+			GameObject.FindWithTag("Player").gameObject.AddComponent<BlueCharacterDecorator>().ChangeColor(Color.blue);
+		}
+		if (Input.GetKeyDown(KeyCode.Y)) {
+			GameObject.FindWithTag("Player").gameObject.AddComponent<YellowCharacterDecorator>().ChangeColor(Color.yellow);
 		}
 
 		float turn = Input.GetAxis("Horizontal");
