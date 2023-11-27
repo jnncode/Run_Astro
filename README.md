@@ -8,3 +8,6 @@ Stylized Astronaut Asset: https://assetstore.unity.com/packages/3d/characters/hu
 - Inheritance and Polymorphism (flexibility and reusability)
 - Abstract Classes and Interfaces (contract definitions)
 - SOLID Principles
+
+### Deliverables
+Unity + C#
