@@ -9,5 +9,5 @@ Stylized Astronaut Asset: https://assetstore.unity.com/packages/3d/characters/hu
 - Abstract Classes and Interfaces (contract definitions)
 - SOLID Principles
 
-### Deliverables
+### Stack
 Unity + C#
