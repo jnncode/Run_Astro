@@ -10,4 +10,4 @@ Stylized Astronaut Asset: https://assetstore.unity.com/packages/3d/characters/hu
 - SOLID Principles
 
 ### Stack
-Unity + C#
+Unity, C#
